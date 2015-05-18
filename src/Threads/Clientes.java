@@ -7,12 +7,14 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Cliente extends Thread {
+import Clases.LeerMensajeCliente;
+
+public class Clientes extends Thread {
 	
 Socket socketclient ;
 BufferedReader entrada;
 	 
-	public Cliente(Socket socket){
+	public Clientes(Socket socket){
 		
 		
 		 this.socketclient = socket;
@@ -25,6 +27,10 @@ BufferedReader entrada;
         try {
         	 entrada = new BufferedReader(new InputStreamReader(socketclient.getInputStream()));
         	String	datos = entrada.readLine();
+        	
+        	
+        	LeerMensajeCliente read=new LeerMensajeCliente(datos);
+        	read.leer();
         	String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
         	if (datos==null){
                  }else{

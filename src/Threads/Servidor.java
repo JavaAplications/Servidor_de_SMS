@@ -27,7 +27,7 @@ public class Servidor extends Thread{
 		         sk = new ServerSocket(Puerto);
 		         System.out.println();  
 	        	 System.out.println("*****************************************************");
-			     System.out.println("************    ServidorMulticliente      ***********");
+			     System.out.println("************    Servidor de SMS      ***********");
 	             System.out.println("************    IP: "+InetAddress.getLocalHost().getHostAddress()+":"+Puerto+"     **********");
 	             System.out.println("*****************************************************");
 	             
@@ -38,7 +38,7 @@ public class Servidor extends Thread{
 		        	  Socket socketclient;
 		        	  socketclient = sk.accept();// se queda a la espera de un cliente
 		           //   System.out.println("Ingreso Cliente");
-		                ((Cliente) new Cliente(socketclient)).start();
+		                ((Clientes) new Clientes(socketclient)).start();
 		          
 		         }
 		   } catch (IOException e) {
