@@ -11,28 +11,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-
-public class Principal extends JFrame {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import Threads.*
+;public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField esit_Puerto;
-
+	JButton btnStart;
+public Servidor s;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Principal frame = new Principal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -63,8 +54,34 @@ public class Principal extends JFrame {
 		JTextArea textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
 		
-		JButton btnStart = new JButton("Start");
+		btnStart = new JButton("Start");
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			 if(btnStart.getText().toString().equals("Start")){
+				iniciarServidor();
+				 btnStart.setText("Stop");}
+			 else{ detenerServidor();
+				 btnStart.setText("Start");}
+			
+			}
+
+			private void detenerServidor() {
+				s.StopServer();
+				
+			}
+
+			private void iniciarServidor() {
+				s=new Servidor(9003);
+				s.start();
+				
+			}
+		});
 		btnStart.setBounds(175, 32, 89, 23);
 		panel.add(btnStart);
 	}
+	
+	
+	
+	
+	
 }

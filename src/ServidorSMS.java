@@ -9,7 +9,7 @@ static Principal principal;
         
 		principal =new Principal();
 		
-		principal.main(null);
+		principal.setVisible(true);
 
 
 		

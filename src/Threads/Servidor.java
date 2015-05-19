@@ -42,7 +42,7 @@ public class Servidor extends Thread{
 		          
 		         }
 		   } catch (IOException e) {
-		          System.out.println("El Puerto se encuentra ocupado");
+		          System.out.println("Puerto ocupado o Server Cerrado");
 		          
 		            
 		          
