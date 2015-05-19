@@ -1,16 +1,18 @@
-import Threads.Servidor;
 
+import Ventanas.*;
 
 public class ServidorSMS {
 static int Puerto=9003;
-	static Servidor s;
+static Principal principal;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-System.out.println("hola");
+        
+		principal =new Principal();
+		
+		principal.main(null);
 
-			s=new Servidor(Puerto);
-    s.run();
 
+		
 	}
 
 }
