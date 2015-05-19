@@ -2,7 +2,7 @@ import Threads.Servidor;
 
 
 public class ServidorSMS {
-static int Puerto=9001;
+static int Puerto=9003;
 	static Servidor s;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

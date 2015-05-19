@@ -1,5 +1,7 @@
 package Clases;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 public class LeerMensajeCliente {
@@ -21,30 +23,24 @@ public LeerMensajeCliente(String mensaje){
 	
 	
 	public void leer(){
-		System.out.println("SMS RECIBIDO !!!");	
 		
+		String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
 		
-		System.out.println("Msg: " +mensaje);
+		System.out.println(timeStamp +"Msg: " +mensaje);
 		
 			
 	
 		try {
 			dni=Integer.parseInt(mensaje);
-			System.out.println("dni: "+dni);	
+			if(dni>4000000){	System.out.println(timeStamp+" DNI: "+dni);	
+			}else{	System.out.println("Faltan numeros al DNI");	
+			}
+			
 			
 		} catch (Exception e) {
-			System.out.println("no es un dni");	
+			System.out.println("Ingrese DNI sin espacios y sin puntos");	
 			
 		}
-		
-		//	Alarma=Integer.parseInt(arr[2]);
-		// cuando la alarma es '1' es una keep alive.
-		// caso contrario es una alarma de algun tipo.
-		
-		
-	
-
-
 	}
 }
 

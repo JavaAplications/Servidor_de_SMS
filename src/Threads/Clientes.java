@@ -22,18 +22,20 @@ BufferedReader entrada;
 	}
 	
 	public void run(){
-		
+		String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
+		     
 		 
         try {
         	 entrada = new BufferedReader(new InputStreamReader(socketclient.getInputStream()));
         	String	datos = entrada.readLine();
-        	
+        	  System.out.println(timeStamp+" "+datos);
+     	     
         	
         	LeerMensajeCliente read=new LeerMensajeCliente(datos);
         	read.leer();
-        	String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
         	if (datos==null){
-                 }else{
+        		 System.out.println(" dato nulo ");
+                       }else{
              System.out.println(timeStamp+" "+datos);
               }
           } catch (IOException ex) {
