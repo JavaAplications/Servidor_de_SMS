@@ -13,14 +13,8 @@ import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 
-import Clases.ReproductorAudio;
-import Class.Reproductor;
+
 import Threads.*
 ;public class Principal extends JFrame {
 
@@ -71,8 +65,7 @@ public Servidor s;
 				iniciarServidor();
 				 btnStart.setText("Stop");
 				 edit_Puerto.setEnabled(false);
-				ReproductorAudio hola=new ReproductorAudio(24305314);
-				hola.play();
+				
 				
 				 }
 			 else{ detenerServidor();

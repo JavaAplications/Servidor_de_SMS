@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+
 
 import Bbdd.Conexion;
 import sun.audio.AudioPlayer;
@@ -29,22 +29,11 @@ public class ReproductorAudio {
 	public void play(){
 		
 		con= new Conexion();
-		res=con.leerSolicitudAudio(dni);
+		String url=con.leerSolicitudAudio(dni);
 		
-		try {
-			
-			audio=	res.getString("AudioDni");
-			
-			System.out.println("audio"+audio);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		// String audio= "C:/Users/Diego/Google Drive/FotosRadiobases/AUDIOS/mp3/DiegoGiovanazzi.wav";
 		 
 		 try {
-			InputStream in=new FileInputStream(audio) ;
+			InputStream in=new FileInputStream(url) ;
 			AudioStream aud=new  AudioStream(in);
 			AudioPlayer.player.start(aud);
 		} catch (FileNotFoundException e) {

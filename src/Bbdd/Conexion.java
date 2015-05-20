@@ -45,15 +45,21 @@ public void InsertarSolicitud(int Id_Dni)
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 	
 
 }
 
-public ResultSet leerSolicitudAudio(int Id_Dni)
+public String leerSolicitudAudio(int Id_Dni)
 {
 	
-
+	  String url = null;
 		
 		Connection con=Conectar();
 		Statement st;
@@ -61,11 +67,23 @@ public ResultSet leerSolicitudAudio(int Id_Dni)
 		try {
 			st=con.createStatement();
 			rs=st.executeQuery("SELECT * FROM dni WHERE Id_Dni='"+Id_Dni+"' ");
+			 while(rs.next()){
+			      
+			     url=rs.getString("Audio_dni");
+			       
+			       System.out.println(url);
+			   }
+			
 			} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-	return rs;
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return url;
 	
 	
 
