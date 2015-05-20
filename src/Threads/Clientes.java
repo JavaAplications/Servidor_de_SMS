@@ -1,5 +1,6 @@
 package Threads;
 
+import java.awt.TextArea;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,17 +8,21 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.JTextArea;
+
 import Clases.LeerMensajeCliente;
 
 public class Clientes extends Thread {
 	
 Socket socketclient ;
 BufferedReader entrada;
+JTextArea consolaArea;
 	 
-	public Clientes(Socket socket){
+	public Clientes(Socket socket,JTextArea consolaArea){
 		
 		
 		 this.socketclient = socket;
+		 this.consolaArea=consolaArea;
 		
 	}
 	
@@ -31,7 +36,7 @@ BufferedReader entrada;
         	  System.out.println(timeStamp+" "+datos);
      	     
         	
-        	LeerMensajeCliente read=new LeerMensajeCliente(datos);
+        	LeerMensajeCliente read=new LeerMensajeCliente(datos,consolaArea);
         	read.leer();
         	if (datos==null){
         		 System.out.println(" dato nulo ");

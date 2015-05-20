@@ -30,6 +30,7 @@ public  Connection Conectar(){
 
 
 public void InsertarSolicitud(int Id_Dni)
+
 {
 	
 	Connection con=Conectar();
@@ -48,23 +49,25 @@ public void InsertarSolicitud(int Id_Dni)
 	
 
 }
-public void leerSolicitud(int Id_Dni)
+
+public ResultSet leerSolicitudAudio(int Id_Dni)
 {
 	
-/*	Connection con=Conectar();
-	
-		PreparedStatement pst;
+
+		
+		Connection con=Conectar();
+		Statement st;
+		ResultSet rs=null;
 		try {
-			pst = con.prepareStatement("SELECT INTO solicitudes (Id_Dni) VALUES (?)");
-				pst.setInt(1,Id_Dni);
-			
-			pst.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			st=con.createStatement();
+			rs=st.executeQuery("SELECT * FROM dni WHERE Id_Dni='"+Id_Dni+"' ");
+			} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+	return rs;
 	
-	*/
+	
 
 }
 	
