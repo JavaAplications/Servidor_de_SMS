@@ -24,7 +24,7 @@ public class LeerMensajeCliente {
 	 JTextArea consolaArea;
 	 String mensaje=null;
 	 SolicitudIngreso solicitud;
-	 String urlSolicitud= "C:/Users/Diego/Google Drive/FotosRadiobases/AUDIOS/wav/SolicitudAcceso.wav";
+	 String urlSolicitud= "C:/xampp/wav/SolicitudAcceso.wav";
 		
 	
 public LeerMensajeCliente(String mensaje,JTextArea consolaArea){
@@ -40,7 +40,7 @@ public LeerMensajeCliente(String mensaje,JTextArea consolaArea){
 		
 		String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
 		
-		System.out.println(timeStamp +"Msg: " +mensaje);
+		System.out.println(timeStamp +" Msg: " +mensaje);
 		
 			
 	
@@ -59,9 +59,8 @@ public LeerMensajeCliente(String mensaje,JTextArea consolaArea){
 			solicitud=new SolicitudIngreso(dni);
 			solicitud.escribirBBDD();
 			consolaArea.append(msg+"\n");
-				
-				ReproductorAudio hola=new ReproductorAudio(dni);
-				hola.play();
+			ReproductorAudio hola=new ReproductorAudio(dni);
+			hola.play();
 				
 			
 			}else{	System.out.println("Faltan numeros al DNI");	
