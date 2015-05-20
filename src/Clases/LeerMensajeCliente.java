@@ -49,7 +49,7 @@ public LeerMensajeCliente(String mensaje,JTextArea consolaArea){
 			String msg=" Solicitud de ingreso DNI: "+dni+" "+timeStamp;
 			
 			if(dni>3000000){	
-				
+				consolaArea.append(msg+"\n");
 			InputStream in=new FileInputStream(urlSolicitud) ;
 			AudioStream aud=new  AudioStream(in);
 			AudioPlayer.player.start(aud);
@@ -58,7 +58,7 @@ public LeerMensajeCliente(String mensaje,JTextArea consolaArea){
 			
 			solicitud=new SolicitudIngreso(dni);
 			solicitud.escribirBBDD();
-			consolaArea.append(msg+"\n");
+			
 			ReproductorAudio hola=new ReproductorAudio(dni);
 			hola.play();
 				
