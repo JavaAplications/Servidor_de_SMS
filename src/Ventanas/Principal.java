@@ -1,7 +1,6 @@
 package Ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import sun.audio.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,14 +10,24 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import Clases.ReproductorAudio;
+import Class.Reproductor;
 import Threads.*
 ;public class Principal extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField esit_Puerto;
+	private JTextField edit_Puerto;
 	JButton btnStart;
+	static public JTextArea consolaArea;
 public Servidor s;
 	/**
 	 * Launch the application.
@@ -40,38 +49,48 @@ public Servidor s;
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		esit_Puerto = new JTextField();
-		esit_Puerto.setHorizontalAlignment(SwingConstants.CENTER);
-		esit_Puerto.setText("9003");
-		esit_Puerto.setBounds(10, 11, 86, 20);
-		panel.add(esit_Puerto);
-		esit_Puerto.setColumns(10);
+		edit_Puerto = new JTextField();
+		edit_Puerto.setHorizontalAlignment(SwingConstants.CENTER);
+		edit_Puerto.setText("9003");
+		edit_Puerto.setBounds(10, 11, 86, 20);
+		panel.add(edit_Puerto);
+		edit_Puerto.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 79, 394, 150);
 		panel.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		consolaArea = new JTextArea();
+		consolaArea.setEditable(false);
+		scrollPane.setViewportView(consolaArea);
 		
 		btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			 if(btnStart.getText().toString().equals("Start")){
 				iniciarServidor();
-				 btnStart.setText("Stop");}
+				 btnStart.setText("Stop");
+				 edit_Puerto.setEnabled(false);
+				ReproductorAudio hola=new ReproductorAudio(24305314);
+				hola.play();
+				
+				 }
 			 else{ detenerServidor();
-				 btnStart.setText("Start");}
+				 btnStart.setText("Start");
+				 edit_Puerto.setEnabled(true);}
 			
 			}
 
 			private void detenerServidor() {
 				s.StopServer();
+				consolaArea.setText("");
 				
 			}
 
 			private void iniciarServidor() {
-				s=new Servidor(9003);
+				int puerto=Integer.parseInt(edit_Puerto.getText().toString());
+				
+				s=new Servidor(puerto,consolaArea);
 				s.start();
 				
 			}
