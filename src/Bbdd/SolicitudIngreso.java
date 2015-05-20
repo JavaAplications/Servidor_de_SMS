@@ -25,7 +25,7 @@ public class SolicitudIngreso {
 		
 		 con=new Conexion();
 		  con.Conectar();
-		  con.InsertarSolicitud(dni);
+		  con.leerSolicitud(dni);
 		
 	}
 }
